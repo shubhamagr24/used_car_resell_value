@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Prediction Form</title>
+    <style>
+        .form-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        .form-container h2 {
+            text-align: center;
+        }
+        .form-container label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        .form-container select,
+        .form-container input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .form-container input[type="submit"] {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .form-container .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Check Resell Value for your Car</h2>
+        <form action="/predict" method="post">
+            <label for="km_driven_in_K">Kilometers Driven (in thousands):</label>
+            <input type="number" id="km_driven_in_K" name="km_driven_in_K" step="0.01" required>
+            
+            <label for="fuel">Fuel Type:</label>
+            <select id="fuel" name="fuel" required>
+                <option value="" disabled selected>Select fuel type</option>
+                <option value="petrol">Petrol</option>
+                <option value="diesel">Diesel</option>
+                <option value="petrol+cng">Petrol + CNG</option>
+                <option value="hybrid">Hybrid</option>
+            </select>
+            
+            <label for="transmission">Transmission Type:</label>
+            <select id="transmission" name="transmission" required>
+                <option value="" disabled selected>Select transmission type</option>
+                <option value="manual">Manual</option>
+                <option value="automatic">Automatic</option>
+            </select>
+            
+            <label for="city">City:</label>
+            <select id="city" name="city" required>
+                <option value="" disabled selected>Select city</option>
+                <option value="hyderabad">Hyderabad</option>
+                <option value="bangalore">Bangalore</option>
+                <option value="delhi-ncr">Delhi-NCR</option>
+                <option value="mumbai">Mumbai</option>
+            </select>
+            
+            <label for="model_year">Model Year:</label>
+            <input type="number" id="model_year" name="model_year" required>
+            
+            <label for="brand_name">Brand Name:</label>
+            <select id="brand_name" name="brand_name" required>
+                <option value="" disabled selected>Select brand</option>
+                <option value="Maruti">Maruti</option>
+                <option value="others">Others</option>
+                <option value="Hyundai">Hyundai</option>
+                <option value="Honda">Honda</option>
+                <option value="Renault">Renault</option>
+                <option value="Tata">Tata</option>
+                <option value="Mahindra">Mahindra</option>
+            </select>
+            
+            <label for="model_name">Model Name:</label>
+            <select id="model_name" name="model_name" required>
+                <option value="" disabled selected>Select model</option>
+                <option value="others">Others</option>
+                <option value="Elite i20">Elite i20</option>
+                <option value="Grand i10">Grand i10</option>
+                <option value="Creta 1.6">Creta 1.6</option>
+                <option value="Suzuki Celerio">Suzuki Celerio</option>
+                <option value="Suzuki Wagon">Suzuki Wagon</option>
+                <option value="Kwid 1.0">Kwid 1.0</option>
+                <option value="Suzuki Baleno">Suzuki Baleno</option>
+                <option value="Suzuki Ciaz">Suzuki Ciaz</option>
+                <option value="Suzuki Swift">Suzuki Swift</option>
+                <option value="Suzuki Alto">Suzuki Alto</option>
+                <option value="Kwid RXT">Kwid RXT</option>
+                <option value="XUV 300">XUV 300</option>
+                <option value="Venue SX">Venue SX</option>
+            </select>
+            
+            <label for="registration_validity">Registration Validity (years):</label>
+            <input type="number" id="registration_validity" name="registration_validity" step="0.01" required>
+            
+            <input type="submit" value="Predict">
+        </form>
+        {% if prediction_text %}
+        <div class="result">{{ prediction_text }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
