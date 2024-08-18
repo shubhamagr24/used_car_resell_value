@@ -19,6 +19,8 @@ def predict():
     # Extract data from form
     features = [x for x in request.form.values()]
     final_features = [list(features)]
+
+    final_features[0]=final_features[0]//1000
     
     # Make prediction
     prediction = model.predict(pd.DataFrame(final_features,columns=['km_driven_in_K',

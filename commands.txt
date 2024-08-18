@@ -1,0 +1,30 @@
+
+python -m venv myenv
+
+create .gitignore file( add current myenv- to exclude our virtual env to be uploaded in git when committing)
+
+myenv\Scripts\Activate
+
+pip install numpy==1.2.22 gunicorn(render lib)
+
+pip freeze > requirements.txt
+
+python app.py
+
+
+------
+
+git init
+
+git remote add origin -------Our repository http link
+
+
+git status (check if we are in main branch)
+
+git add . 
+
+git commit "initial commit"
+
+git push origin master
+
+

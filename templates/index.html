@@ -45,7 +45,7 @@
     <div class="form-container">
         <h2>Check Resell Value for your Car</h2>
         <form action="/predict" method="post">
-            <label for="km_driven_in_K">Kilometers Driven (in thousands):</label>
+            <label for="km_driven_in_K">Kilometers Driven:</label>
             <input type="number" id="km_driven_in_K" name="km_driven_in_K" step="0.01" required>
             
             <label for="fuel">Fuel Type:</label>
@@ -73,7 +73,7 @@
                 <option value="mumbai">Mumbai</option>
             </select>
             
-            <label for="model_year">Model Year:</label>
+            <label for="model_year">Registration/Model Year:</label>
             <input type="number" id="model_year" name="model_year" required>
             
             <label for="brand_name">Brand Name:</label>
@@ -107,7 +107,7 @@
                 <option value="Venue SX">Venue SX</option>
             </select>
             
-            <label for="registration_validity">Registration Validity (years):</label>
+            <label for="registration_validity">Registration is Valid Upto (Enter Year ):</label>
             <input type="number" id="registration_validity" name="registration_validity" step="0.01" required>
             
             <input type="submit" value="Predict">
