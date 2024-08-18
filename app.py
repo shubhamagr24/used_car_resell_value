@@ -18,12 +18,26 @@ def home():
 def predict():
     # Extract data from form
     features = [x for x in request.form.values()]
-    final_features = [list(features)]
+    
+    # Convert numeric input fields as necessary
+    km_driven_in_K = float(features[0]) / 1000  # Convert km_driven to thousands
+    
+    # Construct the final features list
+    final_features = [
+        km_driven_in_K,
+        features[1],  # fuel
+        features[2],  # transmission
+        features[3],  # city
+        int(features[4]),  # model_year
+        features[5],  # brand_name
+        features[6],  # model_name
+        int(features[7])  # registration_validity
+    ]
 
-    final_features[0]=final_features[0]//1000
+    # final_features[0]=final_features[0]/1000
     
     # Make prediction
-    prediction = model.predict(pd.DataFrame(final_features,columns=['km_driven_in_K',
+    prediction = model.predict(pd.DataFrame([final_features],columns=['km_driven_in_K',
     'fuel',
     'transmission',
     'city',
@@ -32,6 +46,7 @@ def predict():
     'model_name',
     'registraton_validity'])
     )
+
     output = prediction[0]
 
     return render_template('index.html', prediction_text='Prediction: {} Lakhs'.format(round(output,2)))
